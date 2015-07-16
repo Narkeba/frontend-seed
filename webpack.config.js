@@ -55,6 +55,6 @@ export default {
 		new webpack.HotModuleReplacementPlugin()
 	],
 	stylus: {
-		use: [nib(), jeet(), axis(), autoprefixer(), rupture()]
+		use: [nib(), jeet(), axis(), autoprefixer(), rupture(), typographic()]
 	}
 }

@@ -1,0 +1,19 @@
+@import 'jeet'
+
+.container
+	center(max_width)
+
+.row
+	cf()
+
+for column in (1..columns)
+	.col-{column}
+		col(column/columns)
+
+for column in (1..columns)
+	.span-{column}
+		span(column/columns)
+
+for column in (1..columns)
+	.shift-{column}
+		shift(column/columns)
