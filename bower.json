@@ -1,0 +1,18 @@
+{
+  "name": "frontend-seed",
+  "version": "0.0.0",
+  "authors": [
+    "m.balkhaev"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "blocks": "~0.3.2"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "name": "blocks",
+  "version": "0.3.2",
+  "main": "dist/blocks.js",
+  "license": "MIT",
+  "author": {
+    "name": "Antonio Stoilkov",
+    "email": "antonio.stoilkov@gmail.com",
+    "url": "http://jsblocks.com"
+  },
+  "ignore": [
+    "build",
+    "examples",
+    "lib",
+    "node_modules",
+    "src",
+    "test",
+    "*.gitignore",
+    "Gruntile.js",
+    "package.json",
+    "dist/npm"
+  ],
+  "keywords": [],
+  "homepage": "https://github.com/astoilkov/jsblocks",
+  "_release": "0.3.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.3.2",
+    "commit": "7af409192040bfa989983fa988cc5ad57329768a"
+  },
+  "_source": "git://github.com/astoilkov/jsblocks.git",
+  "_target": "~0.3.2",
+  "_originalSource": "blocks",
+  "_direct": true
+}
