@@ -1,9 +1,13 @@
-import blog from '../options/blog.js';
+import categories from '../options/categories.js';
+import profile from '../options/profile.js';
+import pages from '../options/pages.js';
 
 App.View('Options', {
 	init: function() {
-		this.currentOptions = App.Widgets.currentWidget
+		this.currentOptions = App.Widgets.getWidget;
 	}
 });
 
-blog();
+categories();
+profile();
+pages();

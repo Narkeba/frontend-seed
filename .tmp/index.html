@@ -10,33 +10,62 @@
 			<div class="right">a</div>
 		</div>
 		<div class="page-layer" data-query="view(Page)">
-			<div class="home-page" data-query="view(Home)">
+			<div class="home-page" data-query="view(Home).visible(App.Options.Pages.currentPage == 'home')">
 				email: {{contacts.email}}
+			</div>
+			<div class="article-page" data-query="view(Article).visible(App.Options.Pages.currentPage == 'article')">
+				<h1>{{article.title}}</h1>
+				<p>{{article.description}}</p>
 			</div>
 		</div>
 		<div class="widgets-layer" data-query="view(Widgets).each(widgets)">
-			<div class="{{slug}}-widget" data-query="click($parent.changeSidebar).setClass('is-current', $view.currentWidget == $this.slug)">{{title}}</div>
+			<div
+				class="{{slug}}-widget"
+				data-query="click($view.changeWidget, $index).setClass('is-current', $view.getWidget().slug == $this.slug)">
+				{{title}}
+			</div>
 		</div>
 		<div class="options-layer" data-query="view(Options)">
-			<div class="blog-categories" data-query="view(BlogCategories).visible($parent.currentOptions == 'blog')">Blog Categories</div>
+			<div class="categories-option" data-query="view(Categories).visible($parent.currentOptions().slug == 'blog')">
+				<ul data-query="each(categories)">
+					<li data-query="click($view.changeCategory).setClass('is-current', $view.currentCategory.slug == $this.slug)">{{title}}</li>
+				</ul>
+			</div>
+			<div class="pages-option" data-query="view(Pages).visible($parent.currentOptions().slug == 'dordevic')">
+				<ul data-query="each(pages)">
+					<li data-query="click($view.changePage).setClass('is-current', $view.currentPage == $this.slug)">{{title}}</li>
+				</ul>
+			</div>
+			<div class="chat-option" data-query="view(Profile).visible($parent.currentOptions().slug == 'chat')">
+				<ul>
+					<li>Опция-1</li>
+				</ul>
+			</div>
 		</div>
 		<div class="sidebar-layer" data-query="view(Sidebar)">
-			<div class="blog-block" data-query="view(Blog).each(articles).visible($parent.currentSidebar == $view.slug)">
-				<div class="article-preview">
-					<div class="controls">
-						<span class="remove" data-query="click(remove)">X</span>
-					</div>
-					<div class="thumbnail">
-						<img src="{{thumbnail}}" alt=""/>
-					</div>
-					<div class="content">
-						<div class="title">{{title}}</div>
-						<div class="description">{{description}}</div>
+			<div class="blog-sidebar" data-query="view(Blog).visible($parent.currentSidebar().slug == $view.slug)">
+				<div class="article-list" data-query="each(articles.view)">
+					<div class="article-preview">
+						<div class="controls">
+							<span class="remove" data-query="click(remove)">X</span>
+						</div>
+						<div class="thumbnail">
+							<img src="{{thumbnail}}" alt=""/>
+						</div>
+						<div class="content">
+							<div class="title">{{title}}</div>
+							<div class="description">{{description}}</div>
+							<a href="#" data-query="navigate(Page.Article, {slug: $this.slug)">Подробнее</a>
+						</div>
 					</div>
 				</div>
 			</div>
-			<div class="blog-block" data-query="visible(currentSidebar == 'chat')">
-				Chatik
+			<div class="chat-sidebar" data-query="view(Chat).visible($parent.currentSidebar == 'chat')">
+				<div class="message-list" data-query="each(messages)">
+					<div class="message-item">
+						<p>{{author}}: {{message}}</p>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

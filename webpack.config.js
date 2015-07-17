@@ -17,6 +17,7 @@ var webpackPaths = {
 export default {
 	watch: true,
 	cache: true,
+	devtool: 'source-map',
 	entry: ["webpack/hot/dev-server", webpackPaths.bootstrap],
 	output: {
 		path: paths.tmp,
@@ -62,6 +63,6 @@ export default {
 		})
 	],
 	stylus: {
-		use: [nib(), jeet(), axis(), autoprefixer(), rupture(), typographic()]
+		use: [nib(), jeet(), axis(), autoprefixer({ browsers: ['last 2 versions'] }), rupture(), typographic()]
 	}
 }
