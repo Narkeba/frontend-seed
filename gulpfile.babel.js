@@ -23,12 +23,8 @@ var clear = [
 
 gulp.task('webpack:server', (cb) => {
 	new webpackDevServer(webpack(webpackConfig), {
-		hot: true,
+		//hot: true,
 		contentBase: paths.tmp,
-		watchOptions: {
-			aggregateTimeout: 300,
-			poll: 1000
-		},
 		stats: {
 			colors: true
 		}

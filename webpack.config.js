@@ -1,15 +1,16 @@
 import path from 'path';
 import paths from './paths.js';
 import webpack from 'webpack';
-import nib from 'nib'
-import rupture from 'rupture'
-import jeet from 'jeet'
-import axis from 'axis'
-import typographic from 'typographic'
-import autoprefixer from 'autoprefixer-stylus'
+import nib from 'nib';
+import rupture from 'rupture';
+import jeet from 'jeet';
+import axis from 'axis';
+import typographic from 'typographic';
+import autoprefixer from 'autoprefixer-stylus';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
 var webpackPaths = {
-	bootstrap: path.join(paths.assets, 'app/bootstrap.js'),
+	bootstrap: path.join(paths.assets, 'app/app.js'),
 	index: path.join(paths.assets, 'index.html')
 };
 
@@ -28,7 +29,7 @@ export default {
 		loaders: [
 			{
 				test: /\.styl$/,
-				loader: 'style!css!stylus'
+				loader: ExtractTextPlugin.extract('style', 'css!stylus')
 			},
 			{
 				test: /\.html$/,
@@ -52,7 +53,13 @@ export default {
 		new webpack.ResolverPlugin(
 			new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin('bower.json', ['main'])
 		),
-		new webpack.HotModuleReplacementPlugin()
+		new webpack.HotModuleReplacementPlugin(),
+		new webpack.ProvidePlugin({
+			blocks: "blocks"
+		}),
+		new ExtractTextPlugin("style.css", {
+			allChunks: true
+		})
 	],
 	stylus: {
 		use: [nib(), jeet(), axis(), autoprefixer(), rupture(), typographic()]
