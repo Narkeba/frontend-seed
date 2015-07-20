@@ -11,36 +11,91 @@
 		</div>
 		<div class="page-layer" data-query="view(Page)">
 			<div class="home-page" data-query="view(Home).visible(App.Options.Pages.currentPage == 'home')">
-				email: {{contacts.email}}
+				<h1>Nark Ebavich</h1>
+				<ul>
+					<li>E-mail: <a href="mailto:{{contacts.email}}">{{contacts.email}}</a></li>
+					<li>Телефон: <a href="tel:{{contacts.phone}}">{{contacts.phone}}</a></li>
+				</ul>
+				<div class="about-me">
+					О себе: Веб-разработчик
+				</div>
+				<ul class="skills-list">
+					<li>
+						Опыт
+						<ul>
+							<li>Программирования: 5 лет</li>
+							<li>Трудовой стаж: 4 года</li>
+							<li>Образование: Среднее</li>
+						</ul>
+					</li>
+					<li>
+						Языки программирования
+						<ul class="languages">
+							<li>JavaScript</li>
+							<li>HTML</li>
+							<li>CSS</li>
+							<li>PHP</li>
+							<li>Python</li>
+						</ul>
+					</li>
+					<li>
+						Препроцессоры
+						<ul class="preprocessors">
+							<li>CoffeeScript</li>
+							<li>TypeScript</li>
+							<li>Less</li>
+							<li>Sass</li>
+							<li>Stylus</li>
+							<li>Jade</li>
+						</ul>
+					</li>
+				</ul>
 			</div>
 			<div class="article-page" data-query="view(Article).visible(App.Options.Pages.currentPage == 'article')">
 				<h1>{{article.title}}</h1>
 				<p>{{article.description}}</p>
 			</div>
 		</div>
-		<div class="widgets-layer" data-query="view(Widgets).each(widgets)">
-			<div
-				class="{{slug}}-widget"
-				data-query="click($view.changeWidget, $index).setClass('is-current', $view.currentWidget == parseInt($index))">
-				{{title}}
-			</div>
+		<div class="widgets-layer" data-query="view(Widgets)">
+			<form class="login-widget is-clear">
+				<div class="form-field">
+					<input type="text" placeholder="Логин"/>
+				</div>
+				<div class="form-field">
+					<input type="password" placeholder="Пароль"/>
+				</div>
+				<div class="form-field is-stack">
+					<input type="checkbox" id="remember"/>
+					<label for="remember">Запомнить</label>
+				</div>
+				<button type="submit">Войти</button>
+			</form>
+			<ul data-query="each(widgets)">
+				<li
+					class="{{slug}}-widget"
+					data-query="click($view.changeWidget, $index).setClass('is-current', $view.currentWidget == parseInt($index))"
+					>
+					{{title}}
+				</li>
+			</ul>
 		</div>
 		<div class="options-layer" data-query="view(Options)">
-			<div class="categories-option" data-query="view(Categories).visible($parent.currentOptions().slug == 'blog')">
-				<ul data-query="each(categories)">
-					<li data-query="click($view.changeCategory, $index).setClass('is-current', $view.currentCategory == parseInt($index))">{{title}}</li>
-				</ul>
-			</div>
-			<div class="pages-option" data-query="view(Pages).visible($parent.currentOptions().slug == 'dordevic')">
-				<ul data-query="each(pages)">
-					<li data-query="click($view.changePage).setClass('is-current', $view.currentPage == $this.slug)">{{title}}</li>
-				</ul>
-			</div>
-			<div class="chat-option" data-query="view(Profile).visible($parent.currentOptions().slug == 'chat')">
-				<ul>
-					<li>Опция-1</li>
-				</ul>
-			</div>
+			<ul
+				class="categories-option"
+				data-query="view(Categories).visible($parent.currentOptions().slug == 'blog').each(categories)">
+				<li data-query="
+					click($view.changeCategory, $index).setClass('is-current', $view.currentCategory == parseInt($index))">
+					{{title}}
+				</li>
+			</ul>
+			<ul class="pages-option" data-query="view(Pages).visible($parent.currentOptions().slug == 'dordevic').each(pages)">
+				<li data-query="click($view.changePage).setClass('is-current', $view.currentPage == $this.slug)">
+					{{title}}
+				</li>
+			</ul>
+			<ul class="chat-option" data-query="view(Profile).visible($parent.currentOptions().slug == 'chat')">
+				<li>Опция-1</li>
+			</ul>
 		</div>
 		<div class="sidebar-layer" data-query="view(Sidebar)">
 			<div class="blog-sidebar" data-query="view(Blog).visible($parent.getSidebar().slug == $view.slug)">
@@ -53,7 +108,7 @@
 							<img src="{{thumbnail}}" alt=""/>
 						</div>
 						<div class="content">
-							<div class="title">{{title}}</div>
+							<h4 class="title">{{title}}</h4>
 							<div class="description">{{description}}</div>
 							<a href="#" data-query="navigate(Page.Article, {slug: $this.slug)">Подробнее</a>
 						</div>
@@ -63,7 +118,7 @@
 			<div class="chat-sidebar" data-query="view(Chat).visible($parent.getSidebar().slug == 'chat')">
 				<div class="message-list" data-query="each(messages)">
 					<div class="message-item">
-						<p>{{author}}: {{message}}</p>
+						<div class="">{{author}}: {{message}}</div>
 					</div>
 				</div>
 			</div>

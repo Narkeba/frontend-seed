@@ -3,5 +3,16 @@
 	&:not(.logo-layer)
 		height: 100%
 
+	& > ul
+		padding-left: 0
+
+		& > li
+			cursor: pointer
+			text-align: center
+			padding: 10px 0
+
+			&.is-current
+				background: rgba(255,255,255,.5)
+
 .widgets-layer, .options-layer
 	padding-top: 60px
