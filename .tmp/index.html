@@ -21,14 +21,14 @@
 		<div class="widgets-layer" data-query="view(Widgets).each(widgets)">
 			<div
 				class="{{slug}}-widget"
-				data-query="click($view.changeWidget, $index).setClass('is-current', $view.getWidget().slug == $this.slug)">
+				data-query="click($view.changeWidget, $index).setClass('is-current', $view.currentWidget == parseInt($index))">
 				{{title}}
 			</div>
 		</div>
 		<div class="options-layer" data-query="view(Options)">
 			<div class="categories-option" data-query="view(Categories).visible($parent.currentOptions().slug == 'blog')">
 				<ul data-query="each(categories)">
-					<li data-query="click($view.changeCategory).setClass('is-current', $view.currentCategory.slug == $this.slug)">{{title}}</li>
+					<li data-query="click($view.changeCategory, $index).setClass('is-current', $view.currentCategory == parseInt($index))">{{title}}</li>
 				</ul>
 			</div>
 			<div class="pages-option" data-query="view(Pages).visible($parent.currentOptions().slug == 'dordevic')">
@@ -43,7 +43,7 @@
 			</div>
 		</div>
 		<div class="sidebar-layer" data-query="view(Sidebar)">
-			<div class="blog-sidebar" data-query="view(Blog).visible($parent.currentSidebar().slug == $view.slug)">
+			<div class="blog-sidebar" data-query="view(Blog).visible($parent.getSidebar().slug == $view.slug)">
 				<div class="article-list" data-query="each(articles.view)">
 					<div class="article-preview">
 						<div class="controls">
@@ -60,7 +60,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="chat-sidebar" data-query="view(Chat).visible($parent.currentSidebar == 'chat')">
+			<div class="chat-sidebar" data-query="view(Chat).visible($parent.getSidebar().slug == 'chat')">
 				<div class="message-list" data-query="each(messages)">
 					<div class="message-item">
 						<p>{{author}}: {{message}}</p>

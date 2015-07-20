@@ -21,8 +21,8 @@ export default () => {
 		slug: 'blog',
 		newArticle: Article(),
 		articles: Articles(articlesData).extend('filter', function(value) {
-			var category = App.Options.Categories.currentCategory();
-			return !category || value.category() != category;
+			var category = App.Options.Categories.getCategory();
+			return !category || value.category() != category.slug();
 		}),
 		changeArticle: function(e) {
 			var article = blocks.context(e.target).$this;

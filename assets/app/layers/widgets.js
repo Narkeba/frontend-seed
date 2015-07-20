@@ -21,7 +21,7 @@ App.View('Widgets', {
 	widgets: Widgets(widgetsData),
 	currentWidget: blocks.observable(0),
 	getWidget: blocks.observable(function() {
-		return this.widgets()[this.currentWidget]
+		return this.widgets()[this.currentWidget()]
 	}),
 	changeWidget: function(e, widgetIndex) {
 		this.currentWidget(widgetIndex);
